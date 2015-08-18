@@ -13,19 +13,32 @@
   </style>
 
   <script type="text/javascript">
+    // this works :)
     window.onElementScroll('.scroller-box', function(e) {
       console.log('onElementScroll scrolled!');
     });
 
+    // this will not work!
     $(document).on('scroll', '.scroller-box', function(e) {
       console.log('document.on scrolled!');
+    });
+
+
+    // See that there are no events attached to the element.
+    // The class is added dynamically after everything else has
+    // been wired up
+    $(function(){
+      $('.box-scroll-toggler').on('click', function(){
+        $('#testelement').toggleClass('scroller-box');
+      });
     });
   </script>
 </head>
 <body>
-<div class="scroller-box">
+<div class="box-scroll-toggler"><button>Enable scroll class</button></div>
+<div id="testelement">
   <p>See the source for this document and you can see that we are registering
-    two scroll listeners to this text box.</p>
+    two scroll listeners to the class .scroller-box</p>
   <p>One with onElementScroll, and one with regular jQuery(document).on();</p>
   <p>If you open the console log you can see that only the onElementScroll
     will be triggered.</p>
