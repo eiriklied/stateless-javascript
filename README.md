@@ -6,6 +6,8 @@ since I like making apps that update the DOM with HTML from AJAX responses.
 
 Utils:
 - [element scroll listening](./element-scrolling)
+- drag and drop (not implemented yet)
+- file drag (not implemented yet)
 
 ## Reason for this toolbox
 
