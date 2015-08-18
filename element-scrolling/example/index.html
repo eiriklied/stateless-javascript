@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="../src/element-scroll.js"></script>
+
+  <style type="text/css">
+  .scroller-box {
+    border: 2px solid #ccc;
+    height: 100px;
+    overflow: scroll;
+  }
+  </style>
+
+  <script type="text/javascript">
+    window.onElementScroll('.scroller-box', function(e) {
+      console.log('onElementScroll scrolled!');
+    });
+
+    $(document).on('scroll', '.scroller-box', function(e) {
+      console.log('document.on scrolled!');
+    });
+  </script>
+</head>
+<body>
+<div class="scroller-box">
+  <p>See the source for this document and you can see that we are registering
+    two scroll listeners to this text box.</p>
+  <p>One with onElementScroll, and one with regular jQuery(document).on();</p>
+  <p>If you open the console log you can see that only the onElementScroll
+    will be triggered.</p>
+  <p>Content to scroll</p>
+  <p>Content to scroll</p>
+  <p>Content to scroll</p>
+  <p>Content to scroll</p>
+  <p>Content to scroll</p>
+</div>
+
+</body>
+</html>

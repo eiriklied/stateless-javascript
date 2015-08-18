@@ -1,8 +1,11 @@
 # Stateless JavaScript utils
 
-TL/DR: a toolbox with JavaScript sprinkles that I found handy during the years. They 
-should work great without attaching event handlers to elements on initialization, 
+TL/DR: a toolbox with JavaScript sprinkles that I found handy during the years. They
+should work great without attaching event handlers to elements on initialization,
 since I like making apps that update the DOM with HTML from AJAX responses.
+
+Utils:
+- [element scroll listening](./element-scrolling)
 
 ## Reason for this toolbox
 
