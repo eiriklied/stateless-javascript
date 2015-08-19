@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="../src/stateless-tooltip.js"></script>
+
+  <style type="text/css">
+    .tooltip-row {
+      margin-left: 100px;
+      margin-top:  50px;
+    }
+  </style>
+
+  <script type="text/javascript">
+    // this works even though we add new elements
+    stateless.tooltip();
+
+    $(function() {
+      var tooltipRowHtml = $('.tooltip-rows').html();
+      $('#add-more-rows').on('click', function() {
+        $('.tooltip-rows').append(tooltipRowHtml);
+      });
+    });
+  </script>
+</head>
+<body>
+<button id="add-more-rows" class="btn btn-default">Add new row of tooltip buttons dynamically</button>
+<div class="tooltip-rows">
+  <p class="tooltip-row">
+    <button class="btn btn-default" data-tooltip="Tooltip" data-placement="left">Hover me!</button >
+    <button class="btn btn-default" href="#" data-tooltip="Tooltip">and me!</button >
+    <button class="btn btn-default" href="#" data-tooltip="Tooltip" data-placement="bottom">and me!</button>
+    <button class="btn btn-default" href="#" data-tooltip="Tooltip" data-placement="right">and me!</button>
+  </p>
+</div>
+</body>
+</html>
