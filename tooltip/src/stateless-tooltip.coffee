@@ -1,3 +1,18 @@
+throttle = (type, name, _obj) ->
+  obj = _obj || window
+  running = false
+  func = ->
+    if running
+      return
+    running = true
+    requestAnimationFrame ->
+      obj.dispatchEvent(new CustomEvent(name))
+      running = false;
+  obj.addEventListener(type, func, true) # true for event capturing, not bubbling
+
+throttle('scroll', 'optimizedScroll', window);
+
+
 tooltipTemplate = """
 <div class="tooltip in">
   <div class="tooltip-arrow"></div>
@@ -7,7 +22,7 @@ tooltipTemplate = """
 tooltipDistanceFromElement = 5
 
 placementBasedOnOrientation = ($elem, $tooltip, orientation) ->
-  elemPos = $elem.position()
+  elemPos = $elem.offset()
   switch orientation
     when 'left'
       top: elemPos.top + $elem[0].offsetHeight/2 - $tooltip[0].offsetHeight/2
@@ -35,7 +50,8 @@ window.stateless.tooltip = ->
 
     $tooltip = $(tooltipTemplate).addClass(orientation)
     $tooltip.find('.tooltip-inner').text(text)
-    $elem.after($tooltip)
+    #$elem.after($tooltip)
+    $('body').append($tooltip)
     $tooltip.css( placementBasedOnOrientation($elem, $tooltip, orientation) )
 
   $(document).on 'mouseleave', '[data-tooltip]', (e) ->
@@ -43,3 +59,11 @@ window.stateless.tooltip = ->
     # restore title
     $elem.attr('title', $elem.data('title')).data('title', null)
     $('.tooltip').remove()
+
+  # listen to all scrolling, both on document and in sub elements
+  # and disable tooltip if it is up because it would otherwise
+  # move with scrolling and look ugly
+  window.addEventListener('optimizedScroll', ->
+    # known bug, we do not restore titles on elements here. like on mouseleave.
+    $('.tooltip').remove()
+  , true)
