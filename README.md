@@ -5,7 +5,7 @@ should work great without attaching event handlers to elements on initialization
 since I like making apps that update the DOM with HTML from AJAX responses.
 
 Utils:
-- [element scroll listening](./element-scrolling)
+- [element scroll listening](./onscroll)
 - drag and drop (not implemented yet)
 - file drag (not implemented yet)
 
