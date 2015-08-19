@@ -3,7 +3,7 @@
 ## Short usage
 
 ```js
-window.onElementScroll('.scroller-box', function(e){
+stateless.onScroll('.scroller-box', function(e){
   console.log('.scroller-box was scrolled!');
 });
 ```

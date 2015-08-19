@@ -13,5 +13,6 @@ _onScroll = (e) ->
 window.addEventListener('scroll', _onScroll, true)
 
 # only exposed API
-window.onElementScroll = (selector, callback) ->
+window.stateless = window.stateless || {}
+window.stateless.onScroll = (selector, callback) ->
   registeredSelectors[selector] = callback

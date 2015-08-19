@@ -20,7 +20,9 @@
 
   window.addEventListener('scroll', _onScroll, true);
 
-  window.onElementScroll = function(selector, callback) {
+  window.stateless = window.stateless || {};
+
+  window.stateless.onScroll = function(selector, callback) {
     return registeredSelectors[selector] = callback;
   };
 

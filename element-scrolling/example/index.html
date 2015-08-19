@@ -14,8 +14,8 @@
 
   <script type="text/javascript">
     // this works :)
-    window.onElementScroll('.scroller-box', function(e) {
-      console.log('onElementScroll scrolled!');
+    stateless.onScroll('.scroller-box', function(e) {
+      console.log('stateless.onElementScroll scrolled!');
     });
 
     // this will not work!
@@ -35,7 +35,7 @@
   </script>
 </head>
 <body>
-<div class="box-scroll-toggler"><button>Enable scroll class</button></div>
+<div class="box-scroll-toggler"><button>Enable/disable scroll class</button></div>
 <div id="testelement">
   <p>See the source for this document and you can see that we are registering
     two scroll listeners to the class .scroller-box</p>
