@@ -2,24 +2,25 @@
 (function() {
   var placementBasedOnOrientation, throttle, tooltipDistanceFromElement, tooltipTemplate;
 
-  throttle = function(type, name, _obj) {
-    var func, obj, running;
-    obj = _obj || window;
-    running = false;
-    func = function() {
-      if (running) {
-        return;
-      }
-      running = true;
-      return requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        return running = false;
-      });
+  if (window.requestAnimationFrame) {
+    throttle = function(type, name, _obj) {
+      var func, obj, running;
+      obj = _obj || window;
+      running = false;
+      func = function() {
+        if (running) {
+          return;
+        }
+        running = true;
+        return requestAnimationFrame(function() {
+          obj.dispatchEvent(new CustomEvent(name));
+          return running = false;
+        });
+      };
+      return obj.addEventListener(type, func, true);
     };
-    return obj.addEventListener(type, func, true);
-  };
-
-  throttle('scroll', 'optimizedScroll', window);
+    throttle('scroll', 'optimizedScroll', window);
+  }
 
   tooltipTemplate = "<div class=\"tooltip in\">\n  <div class=\"tooltip-arrow\"></div>\n  <div class=\"tooltip-inner\"></div>\n</div>";
 

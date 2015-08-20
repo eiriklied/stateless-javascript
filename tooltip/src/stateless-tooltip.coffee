@@ -1,16 +1,19 @@
-throttle = (type, name, _obj) ->
-  obj = _obj || window
-  running = false
-  func = ->
-    if running
-      return
-    running = true
-    requestAnimationFrame ->
-      obj.dispatchEvent(new CustomEvent(name))
-      running = false;
-  obj.addEventListener(type, func, true) # true for event capturing, not bubbling
+# not all browsers have requestAnimationFrame, so we will not try to throttle
+# unless they do
+if window.requestAnimationFrame
+  throttle = (type, name, _obj) ->
+    obj = _obj || window
+    running = false
+    func = ->
+      if running
+        return
+      running = true
+      requestAnimationFrame ->
+        obj.dispatchEvent(new CustomEvent(name))
+        running = false;
+    obj.addEventListener(type, func, true) # true for event capturing, not bubbling
 
-throttle('scroll', 'optimizedScroll', window);
+  throttle('scroll', 'optimizedScroll', window);
 
 
 tooltipTemplate = """
