@@ -56,7 +56,7 @@
   window.stateless = window.stateless || {};
 
   window.stateless.tooltip = function() {
-    $(document).on('mouseenter', '[data-tooltip]', function(e) {
+    $(document).on('mouseenter focus', '[data-tooltip]', function(e) {
       var $elem, $tooltip, orientation, text;
       $elem = $(this);
       orientation = $elem.data('placement') || 'top';
@@ -67,7 +67,7 @@
       $('body').append($tooltip);
       return $tooltip.css(placementBasedOnOrientation($elem, $tooltip, orientation));
     });
-    $(document).on('mouseleave', '[data-tooltip]', function(e) {
+    $(document).on('mouseleave blur', '[data-tooltip]', function(e) {
       var $elem;
       $elem = $(this);
       $elem.attr('title', $elem.data('title')).data('title', null);
