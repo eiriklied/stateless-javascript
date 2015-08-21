@@ -44,7 +44,7 @@ placementBasedOnOrientation = ($elem, $tooltip, orientation) ->
 window.stateless = window.stateless || {}
 
 window.stateless.tooltip = ->
-  $(document).on 'mouseenter', '[data-tooltip]', (e) ->
+  $(document).on 'mouseenter focus', '[data-tooltip]', (e) ->
     $elem = $(this)
     orientation = $elem.data('placement') || 'top'
     # remove title to avoid both tooltips and title
@@ -57,7 +57,7 @@ window.stateless.tooltip = ->
     $('body').append($tooltip)
     $tooltip.css( placementBasedOnOrientation($elem, $tooltip, orientation) )
 
-  $(document).on 'mouseleave', '[data-tooltip]', (e) ->
+  $(document).on 'mouseleave blur', '[data-tooltip]', (e) ->
     $elem = $(this)
     # restore title
     $elem.attr('title', $elem.data('title')).data('title', null)
